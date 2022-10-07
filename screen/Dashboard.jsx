@@ -45,11 +45,6 @@ const Dashboard = ({ navigation }) => {
 
   let userData = async () => {
     const token = await AsyncStorage.getItem("token");
-    // let head = {
-    //   Headers: {
-    //     Authorization: "Bearer " + token,
-    //   },
-    // };
     setAuthToken(token);
     const data = await API.post("/auth/verify-token");
     console.log(data.data.user);
@@ -59,16 +54,20 @@ const Dashboard = ({ navigation }) => {
 
   useEffect(() => {
     data();
-    console.log(data.length !== 0);
+    // console.log(data.length !== 0);
     // setUser(userData);
     userData();
+
+    return () => {
+      setTodo([]), setUser({});
+    };
 
     // console.log(userData());
   }, []);
 
   return (
     <>
-      <VStack space={1} justifyContent="center" mx="6" mb="3">
+      <VStack space={1} justifyContent="center" mx="6" mb="3" my="2">
         <HStack justifyContent="space-between" space={5}>
           <Box alignItems="start">
             <Text fontSize="2xl" bold>
@@ -78,7 +77,7 @@ const Dashboard = ({ navigation }) => {
               {todo?.length} List
             </Text>
           </Box>
-          <Box mt="2">
+          <Box my="1">
             <Pressable onPress={() => setShowModal(true)}>
               <Avatar
                 bg="green.500"

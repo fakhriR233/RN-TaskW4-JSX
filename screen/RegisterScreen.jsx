@@ -113,7 +113,6 @@ const RegisterScreen = ({ navigation }) => {
           </FormControl>
           <FormControl>
             <Input
-              type="email"
               placeholder="Name"
               fontSize="bold"
               onChangeText={(value) => handleChange("firstName", value)}

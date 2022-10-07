@@ -19,7 +19,7 @@ import { UserContextProvider } from "./context/userContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setAuthToken } from "./config/api";
 
-// import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 // Define the config
 const config = {
@@ -30,16 +30,16 @@ const config = {
 // extend the theme
 export const theme = extendTheme({ config });
 
-// const client = new QueryClient();
+const client = new QueryClient();
 
 export default function App() {
   return (
     <UserContextProvider>
       <SafeAreaProvider>
         <NativeBaseProvider>
-          {/* <QueryClientProvider client={client}> */}
-          <Routes />
-          {/* </QueryClientProvider> */}
+          <QueryClientProvider client={client}>
+            <Routes />
+          </QueryClientProvider>
         </NativeBaseProvider>
       </SafeAreaProvider>
     </UserContextProvider>
